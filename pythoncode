@@ -1,0 +1,37 @@
+import requests
+
+def recipe_search(ingredient, dietary_requirement):
+    app_id = "958c7aa5"
+    app_key = "1b692242ff626b8159d1ef5c92630dd8"
+    result = requests.get(
+"https://api.edamam.com/search?q={}&app_id={}&app_key={}".format(ingredient, app_id,
+
+app_key)
+    )
+    data = result.json()
+    return data["hits"]
+
+def run():
+    ingredient = input("Enter an ingredient: ")
+    dietary_requirement = input("Do you have a dietary requirement: ")
+    if dietary_requirement == "y":
+        requirements = input("Enter your requirement from vegan/vegetarian/paleo/dairy-free/gluten-free/wheat-free/fat-free/low-sugar/egg-free/peanut-free/tree-nut-free/soy-free/fish-free/shellfish-free: ")
+
+    results = recipe_search(ingredient, dietary_requirement)
+    for result in results:
+        recipe = result["recipe"]
+        print(recipe["label"])
+        print(recipe["uri"])
+        print()
+
+run()
+
+new_item = input("Add recipe to meal planner: ")
+with open("recipe.txt", "r") as recipe_file:
+    recipes = recipe_file.read()
+
+recipes = recipes + new_item + "\n"
+
+with open("recipe.txt", "w+") as recipe_file:
+    recipe_file.write(recipes)
+
