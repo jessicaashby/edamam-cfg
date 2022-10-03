@@ -67,11 +67,6 @@ in the code correctly was the biggest hurdle, especially when using data from th
 
 Continue to learn Python concepts now that the course has finished. I have enrolled on a few other courses so will take those whilst studying other areas of Python that I'm not as confident with.
 
-### Useful resources
-
-- [HTML Tree Generator](https://chrome.google.com/webstore/detail/html-tree-generator/dlbbmhhaadfnbbdnjalilhdakfmiffeg) - Generates websites' DOM trees
-- [CSS Peeper](https://chrome.google.com/webstore/detail/css-peeper/mbnbehikldjhnfehhnaidhjhoofhpehk?hl=en) - extracts the key CSS elements of a webpage
-
 ## Author
 
 - LinkedIn - [Jessica Ashby](https://www.linkedin.com/jessicaashby)
