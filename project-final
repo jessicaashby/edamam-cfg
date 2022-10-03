@@ -1,0 +1,68 @@
+import requests
+
+
+def recipe_search(meal_type, ingredient, dietary_requirement):
+    app_id = "958c7aa5"
+    app_key = "1b692242ff626b8159d1ef5c92630dd8"
+    result = requests.get(
+        "https://api.edamam.com/search?q={}&app_id={}&app_key={}".format(ingredient, app_id,app_key)
+    )
+    data = result.json()
+    return data["hits"]
+
+
+def run_recipe_search() -> None:
+    meal_type = input("Are you looking for a particular type of meal?: ")
+    if meal_type == "yes":
+          input("Select an option from the following list:"
+                "\n - breakfast"
+                "\n - brunch"
+                "\n - lunch"
+                "\n - snack"
+                "\n - teatime"
+                "\n > ")
+    else: None
+
+    has_restriction = input('Do you have a dietary requirement? ')
+    if has_restriction == 'yes':
+        dietary_requirement = input(
+            'Select an option from the following list:'
+            '\n - vegan'
+            '\n - vegetarian'
+            '\n - paleo'
+            '\n - dairy-free'
+            '\n - gluten-free'
+            '\n - wheat-free'
+            '\n - fat-free'
+            '\n - low-sugar'
+            '\n - egg-free'
+            '\n - peanut-free'
+            '\n - tree-nut-free'
+            '\n - soy-free'
+            '\n - fish-free'
+            '\n - shellfish-free'
+            '\n >'
+        )
+    else:
+        dietary_requirement = None
+
+    ingredient = input('What ingredient would you like to use? ')
+    results = recipe_search(meal_type, ingredient, dietary_requirement)
+    for result in results:
+        recipe = result['recipe']
+        print(recipe["label"])
+        print(recipe["ingredientLines"])
+        print(recipe["mealType"])
+        print()
+
+
+def add_recipe() -> None:
+    new_item = input('Based on your requirements, these all fit your needs. What recipe would you like to add to your meal planner? ')
+    with open('recipe.txt', 'a') as recipe_file:
+        print(new_item, file=recipe_file)
+
+
+
+if __name__ == '__main__':
+    run_recipe_search()
+    add_recipe()
